@@ -16,6 +16,7 @@ using System.Windows.Annotations;
 using System.Windows.Annotations.Storage;
 using System.IO;
 using System.Windows.Markup;
+using AutoLotDAL2.Repos;
 
 namespace WPFControlsAndAPIs
 {
@@ -57,6 +58,9 @@ namespace WPFControlsAndAPIs
             #endregion
             #region Data Binding
             SetBindings();
+            #endregion
+            #region DataGrid
+            ConfigureGrid();
             #endregion
         }
 
@@ -137,6 +141,16 @@ namespace WPFControlsAndAPIs
 
             //Call the SetBinding method on the Label.
             this.labelSBThumb.SetBinding(Label.ContentProperty, b);
+        }
+        #endregion
+        #region DataGrid
+        private void ConfigureGrid()
+        {
+            using (var repo = new CarRepo())
+            {
+                //Build a LINQ query that gets back some data from the Inventory table
+                gridInventory.ItemsSource = repo.GetAll().Select(x => new { x.CarId, x.Make, x.Color, x.CarNickName });
+            }
         }
         #endregion
     }

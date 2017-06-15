@@ -71,7 +71,7 @@
             </TabItem>
             <TabItem x:Name="DataGrid" Header="DataGrid">
                 <DockPanel Background="#FFE5E5E5">
-                    <DataGrid DockPanel.Dock="Top" x:Name="gridInventory"/>
+                    <DataGrid DockPanel.Dock="Top" x:Name="gridInventory" AlternatingRowBackground="#FF7BC0CF" AlternationCount="2" FontSize="14"/>
                 </DockPanel>
             </TabItem>
         </TabControl>
