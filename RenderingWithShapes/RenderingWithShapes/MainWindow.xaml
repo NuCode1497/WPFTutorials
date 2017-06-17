@@ -5,11 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RenderingWithShapes"
         mc:Ignorable="d"
-        Title="Fun with Shapes!" Height="350" Width="525">
+        Title="Fun with Shapes!" Height="350" Width="525" Background="#FF48CD7E">
     <DockPanel LastChildFill="True">
+        <!--<DockPanel.LayoutTransform>
+            <RotateTransform Angle="45"/>
+        </DockPanel.LayoutTransform>-->
         <ToolBar DockPanel.Dock="Top" Name="mainToolBar" Height="50">
             <RadioButton Name="circleOption" GroupName="shapeSelection" Click="circleOption_Click">
-                <Ellipse Fill="Green" Height="35" Width="35"/>
+                <Ellipse Height="35" Width="35">
+                    <Ellipse.Fill>
+                        <RadialGradientBrush>
+                            <GradientStop Color="#FF0017FF" Offset="0"/>
+                            <GradientStop Color="#FF46C840" Offset="1"/>
+                            <GradientStop Color="#FF912A75" Offset="0.525"/>
+                        </RadialGradientBrush>
+                    </Ellipse.Fill>
+                </Ellipse>
             </RadioButton>
             <RadioButton Name="rectOption" GroupName="shapeSelection" Checked="rectOption_Checked">
                 <Rectangle Fill="Red" Height="35" Width="35" RadiusY="10" RadiusX="10"/>
@@ -19,7 +30,8 @@
                       X1="10" Y1="10" Y2="25" X2="25"
                       StrokeStartLineCap="Triangle" StrokeEndLineCap="Round" />
             </RadioButton>
+            <ToggleButton Name="FlipCanvas" Click="FlipCanvas_Click" Content="Flip Canvas"/>
         </ToolBar>
-        <Canvas Background="LightBlue" Name="canvasDrawingArea" MouseLeftButtonDown="canvasDrawingArea_MouseLeftButtonDown" MouseRightButtonDown="canvasDrawingArea_MouseRightButtonDown"/>
+        <Canvas ClipToBounds="True" Background="LightBlue" Name="canvasDrawingArea" MouseLeftButtonDown="canvasDrawingArea_MouseLeftButtonDown" MouseRightButtonDown="canvasDrawingArea_MouseRightButtonDown"/>
     </DockPanel>
 </Window>

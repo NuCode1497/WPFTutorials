@@ -53,7 +53,15 @@ namespace RenderingWithShapes
             switch(_currentShape)
             {
                 case SelectedShape.Circle:
-                    shapeToRender = new Ellipse() { Fill = Brushes.Green, Height = 35, Width = 35 };
+                    shapeToRender = new Ellipse() { Height = 35, Width = 35 };
+                    RadialGradientBrush brush = new RadialGradientBrush();
+                    /*      <GradientStop Color="#FF0017FF" Offset="0"/>
+                            <GradientStop Color="#FF46C840" Offset="1"/>
+                            <GradientStop Color="#FF912A75" Offset="0.525"/> */
+                    brush.GradientStops.Add(new GradientStop((Color)ColorConverter.ConvertFromString("#FF0017FF"), 0));
+                    brush.GradientStops.Add(new GradientStop((Color)ColorConverter.ConvertFromString("#FF46C840"), 1));
+                    brush.GradientStops.Add(new GradientStop((Color)ColorConverter.ConvertFromString("#FF912A75"), 0.525));
+                    shapeToRender.Fill = brush;
                     break;
                 case SelectedShape.Rectangle:
                     shapeToRender = new Rectangle() { Fill = Brushes.Red, Height = 35, Width = 35, RadiusX = 10, RadiusY = 10 };
@@ -69,6 +77,12 @@ namespace RenderingWithShapes
                 default:
                     return;
             }
+
+            if(FlipCanvas.IsChecked == true)
+            {
+                shapeToRender.RenderTransform = new RotateTransform(180);
+            }
+
             //set top/left position to draw in the canvas
             Canvas.SetLeft(shapeToRender, e.GetPosition(canvasDrawingArea).X);
             Canvas.SetTop(shapeToRender, e.GetPosition(canvasDrawingArea).Y);
@@ -89,6 +103,19 @@ namespace RenderingWithShapes
             if (result != null)
             {
                 canvasDrawingArea.Children.Remove(result.VisualHit as Shape);
+            }
+        }
+
+        private void FlipCanvas_Click(object sender, RoutedEventArgs e)
+        {
+            if(FlipCanvas.IsChecked == true)
+            {
+                RotateTransform rotate = new RotateTransform(180);
+                canvasDrawingArea.LayoutTransform = rotate;
+            }
+            else
+            {
+                canvasDrawingArea.LayoutTransform = null;
             }
         }
     }
