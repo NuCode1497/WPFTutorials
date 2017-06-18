@@ -16,7 +16,7 @@
             <Button x:Name="btnRotate" Content="Rotate" Click="btnRotate_Click"/>
             <Button x:Name="btnFlip" Content="Flip" Click="btnFlip_Click"/>
         </StackPanel>
-        <Canvas x:Name="Face" Grid.Column="1" Margin="26,54,75,108" RenderTransformOrigin="0.5,0.5">
+        <Canvas x:Name="Face" Grid.Column="1" Margin="26,54,75,108">
             <Ellipse Fill="#FFE6DC14" HorizontalAlignment="Left" Height="157" Stroke="Black" VerticalAlignment="Top" Width="158"/>
             <Ellipse HorizontalAlignment="Left" Height="27" Stroke="Black" VerticalAlignment="Top" Width="31" Canvas.Left="35" Canvas.Top="31">
                 <Ellipse.Fill>
