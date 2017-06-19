@@ -1,0 +1,20 @@
+﻿<Window x:Class="ObjectResourcesApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ObjectResourcesApp"
+        mc:Ignorable="d"
+        Title="Fun With Object Resources" Height="350" Width="525" Background="#FF48CD7E">
+    <Window.Resources>
+    </Window.Resources>
+    <StackPanel Orientation="Horizontal">
+        <Button x:Name="btnOK" Margin="25" Height="200" Width="200" Content="OK" FontSize="20" Background="{DynamicResource myBrush}" Click="btnOK_Click"/>
+        <Button x:Name="btnCancel" Margin="25" Height="200" Width="200" FontSize="20" Click="btnCancel_Click">
+            <StackPanel>
+                <Label Content="No Way!"/>
+                <Ellipse Fill="{DynamicResource myBrush}" Width="100" Height="100"/>
+            </StackPanel>
+        </Button>
+    </StackPanel>
+</Window>
