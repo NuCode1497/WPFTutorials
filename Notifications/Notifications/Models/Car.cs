@@ -5,10 +5,11 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace Notifications.Models
 {
-    public class Car : INotifyPropertyChanged
+    public partial class Car : INotifyPropertyChanged
     {
         private int _carId;
         private string _make;
@@ -16,6 +17,7 @@ namespace Notifications.Models
         private string _petName;
         private bool _isChanged;
 
+        [Required]
         public int CarId
         {
             get { return _carId; }
@@ -26,6 +28,7 @@ namespace Notifications.Models
                 OnPropertyChanged();
             }
         }
+        [Required, StringLength(50)]
         public string Make
         {
             get { return _make; }
@@ -33,9 +36,10 @@ namespace Notifications.Models
             {
                 if (value == _make) return;
                 _make = value;
-                OnPropertyChanged();
+                OnPropertyChanged(nameof(Make));
             }
         }
+        [Required, StringLength(50)]
         public string Color
         {
             get { return _color; }
@@ -46,6 +50,7 @@ namespace Notifications.Models
                 OnPropertyChanged(nameof(Color));
             }
         }
+        [StringLength(50)]
         public string PetName
         {
             get { return _petName; }
@@ -74,6 +79,7 @@ namespace Notifications.Models
         {
             if (propertyName != nameof(IsChanged)) IsChanged = true;
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(string.Empty));
         }
     }
 }

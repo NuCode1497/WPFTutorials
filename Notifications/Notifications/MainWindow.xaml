@@ -7,7 +7,32 @@
         mc:Ignorable="d"
         Style="{StaticResource WindowStyle}"
         WindowStartupLocation="CenterScreen"
-        Title="Fun with Notifications!" Height="205.84" Width="292.623">
+        Title="Fun with Notifications!" SizeToContent="WidthAndHeight">
+    <Window.Resources>
+        <Style TargetType="{x:Type TextBox}">
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="true">
+                    <Setter Property="Background" Value="Pink"/>
+                    <Setter Property="Foreground" Value="Black"/>
+                    <Setter Property="ToolTip" 
+                            Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}"/>
+                </Trigger>
+            </Style.Triggers>
+            <Setter Property="Validation.ErrorTemplate">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <DockPanel LastChildFill="True">
+                            <TextBlock Foreground="Red" FontSize="20" Text="!" 
+                                       ToolTip="{Binding ElementName=controlWithError, Path=AdornedElement.(Validation.Errors)[0].ErrorContent}"/>
+                            <Border BorderBrush="Red" BorderThickness="1">
+                                <AdornedElementPlaceholder Name="controlWithError"/>
+                            </Border>
+                        </DockPanel>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
     <Grid IsSharedSizeScope="True" Margin="5,0,5,5">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -21,7 +46,7 @@
             <Label Grid.Column="0" Content="Vehicle"/>
             <ComboBox Name="cboCars" Grid.Column="1" DisplayMemberPath="PetName"/>
         </Grid>
-        <Grid Grid.Row="1" DataContext="{Binding ElementName=cboCars, Path=SelectedItem}">
+        <Grid x:Name="testGrid" Grid.Row="1" DataContext="{Binding ElementName=cboCars, Path=SelectedItem}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" SharedSizeGroup="CarLabels"/>
                 <ColumnDefinition Width="*"/>
@@ -32,21 +57,32 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <Label Grid.Column="0" Grid.Row="0" Content="Make"/>
-            <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Path=Make}"/>
-            <Label Grid.Column="0" Grid.Row="1" Content="Color"/>
-            <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding Path=Color, UpdateSourceTrigger=PropertyChanged}"/>
-            <Label Grid.Column="0" Grid.Row="2" Content="Pet Name"/>
-            <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding Path=PetName}"/>
-            <StackPanel Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3" HorizontalAlignment="Right"
+            <Label Grid.Column="0" Grid.Row="0" Content="Id"/>
+            <Label Grid.Column="0" Grid.Row="1" Content="Make"/>
+            <Label Grid.Column="0" Grid.Row="2" Content="Color"/>
+            <Label Grid.Column="0" Grid.Row="3" Content="Pet Name"/>
+            <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Path=CarId, ValidatesOnExceptions=True, ValidatesOnDataErrors=True}"/>
+            <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding Path=Make, ValidatesOnExceptions=True, ValidatesOnDataErrors=True}"/>
+            <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding Path=Color, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True, ValidatesOnDataErrors=True}"/>
+            <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding Path=PetName, ValidatesOnExceptions=True, ValidatesOnDataErrors=True}"/>
+            <StackPanel Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="4" HorizontalAlignment="Right"
                         Orientation="Horizontal" Margin="0,5,0,5">
                 <Button x:Name="btnAddCar" Content="Add Car" Margin="5,0,5,0" Padding="4,2" Click="btnAddCar_Click"/>
                 <Button x:Name="btnChangeColor" Content="Change Color" Margin="5,0,5,0" Padding="4,2" Click="btnChangeColor_Click"/>
                 <Button x:Name="btnRemoveCar" Content="Remove Car" Margin="5,0,5,0" Padding="4,2" Click="btnRemoveCar_Click"/>
             </StackPanel>
-            <Label Grid.Column="0" Grid.Row="4" Content="Is Changed"/>
-            <CheckBox Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" Margin="10,0,0,0" IsEnabled="False" IsChecked="{Binding Path=IsChanged}"/>
+            <Label Grid.Column="0" Grid.Row="5" Content="Is Changed"/>
+            <CheckBox Grid.Column="1" Grid.Row="5" VerticalAlignment="Center" Margin="10,0,0,0" IsEnabled="False" IsChecked="{Binding Path=IsChanged}"/>
+            <ListBox Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="2" ItemsSource="{Binding ElementName=testGrid, Path=(Validation.Errors)}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <ListBox ItemsSource="{Binding Path=ErrorContent}"/>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
         </Grid>
     </Grid>
 </Window>
