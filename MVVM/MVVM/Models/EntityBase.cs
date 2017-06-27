@@ -7,7 +7,7 @@ using System.Collections;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace Notifications.Models
+namespace MVVM.Models
 {
     public class EntityBase : INotifyDataErrorInfo
     {

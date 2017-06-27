@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 
-namespace Notifications.Models
+namespace MVVM.Models
 {
     public partial class Car : INotifyPropertyChanged
     {

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Notifications.Models
+namespace MVVM.Models
 {
     public partial class Car : EntityBase,IDataErrorInfo
     {

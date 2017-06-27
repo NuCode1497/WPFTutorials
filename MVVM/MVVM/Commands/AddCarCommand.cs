@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Notifications.Models;
+using MVVM.Models;
 
-namespace Notifications.Commands
+namespace MVVM.Commands
 {
     internal class AddCarCommand : CommandBase
     {

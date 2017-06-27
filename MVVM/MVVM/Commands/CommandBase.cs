@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace Notifications.Commands
+namespace MVVM.Commands
 {
     public abstract class CommandBase : ICommand
     {

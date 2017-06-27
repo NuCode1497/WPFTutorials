@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Notifications.Properties
+namespace MVVM.Properties
 {
 
 
