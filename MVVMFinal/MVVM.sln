@@ -4,8 +4,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 15.0.26430.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVVM", "MVVM\MVVM.csproj", "{8FDEC479-0E75-4472-927F-8C5D8936C429}"
+	ProjectSection(ProjectDependencies) = postProject
+		{AE0B1D75-0DDF-4BF1-965E-8C00618590D7} = {AE0B1D75-0DDF-4BF1-965E-8C00618590D7}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoLotDAL2", "AutoLotDAL2\AutoLotDAL2.csproj", "{AE0B1D75-0DDF-4BF1-965E-8C00618590D7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoLotDAL2", "..\MVVM\AutoLotDAL2\AutoLotDAL2.csproj", "{AE0B1D75-0DDF-4BF1-965E-8C00618590D7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
