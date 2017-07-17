@@ -18,7 +18,7 @@ namespace MVVM.Commands
 
         public override void Execute(object parameter)
         {
-            var maxCount = _inventory?.Max(x => x.CarId) ?? 0;
+            var maxCount = _inventory?.Select(x => x.CarId).DefaultIfEmpty().Max() ?? 0;
             _inventory?.Add(new Car { CarId = ++maxCount, Color = "Yellow", Make = "VW", CarNickName = "Birdie", IsChanged = false });
         }
 

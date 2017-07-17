@@ -38,7 +38,7 @@ namespace AutoLotDAL2.Repos
                 //handle transaction failures here
                 throw ex;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 //some other exception happend and should be handled
                 throw ex;

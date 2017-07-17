@@ -17,12 +17,12 @@ namespace AutoLotDAL2.Repos
 
         public int Delete(int id, byte[] timeStamp)
         {
-            Context.Entry(new Car() { CarId = id }).State = EntityState.Deleted;
+            Context.Entry(new Car() { CarId = id, TimeStamp = timeStamp }).State = EntityState.Deleted;
             return SaveChanges();
         }
         public Task<int> DeleteAsync(int id, byte[] timeStamp)
         {
-            Context.Entry(new Car() { CarId = id }).State = EntityState.Deleted;
+            Context.Entry(new Car() { CarId = id, TimeStamp = timeStamp }).State = EntityState.Deleted;
             return SaveChangesAsync();
         }
     }

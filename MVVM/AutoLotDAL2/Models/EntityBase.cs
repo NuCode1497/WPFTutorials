@@ -14,6 +14,12 @@ namespace AutoLotDAL2.Models
     [AddINotifyPropertyChangedInterface]
     public abstract class EntityBase : IDataErrorInfo,INotifyDataErrorInfo
     {
+        [Timestamp]
+        public byte[] TimeStamp { get; set; }
+
+        [NotMapped]
+        public bool IsChanged { get; set; }
+
         private readonly Dictionary<string, List<string>> _errors = new Dictionary<string, List<string>>();
         public bool HasErrors => _errors.Count != 0;
         public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
@@ -25,12 +31,6 @@ namespace AutoLotDAL2.Models
             }
             return _errors.ContainsKey(propertyName) ? _errors[propertyName] : null;
         }
-
-        [Timestamp]
-        public byte[] TimeStamp { get; set; }
-
-        [NotMapped]
-        public bool IsChanged { get; set; }
 
         public string Error { get; }
 

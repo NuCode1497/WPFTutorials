@@ -34,8 +34,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AutoLotDAL2">
-      <HintPath>..\..\..\ADOTutorials\AutoLotDAL2\AutoLotDAL2\bin\Debug\AutoLotDAL2.dll</HintPath>
+    <Reference Include="AutoLotDAL2, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\MVVM\AutoLotDAL2\bin\Debug\AutoLotDAL2.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
